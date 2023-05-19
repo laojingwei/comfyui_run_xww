@@ -1,0 +1,189 @@
+- author: xww
+  name: comfy_translation_node
+  gitUrl: https://github.com/laojingwei/comfy_translation_node
+  civitaiUrl: https://civitai.com/models/42647/comfyui-comfytranslationnode
+
+- author: xww
+  name: comfy_assemble_tags_node
+  gitUrl: https://github.com/laojingwei/comfy_assemble_tags_node
+  civitaiUrl: https://civitai.com/models/49851/comfyui-comfyassembletagsnode
+  
+- author: paulo-coronado
+  name: comfy_clip_blip_node
+  gitUrl: https://github.com/paulo-coronado/comfy_clip_blip_node
+  civitaiUrl: https://civitai.com/models/42974/comfyui-clip-blip-node
+
+- author: space-nuko
+  name: ComfyBox
+  gitUrl: https://github.com/space-nuko/ComfyBox
+  civitaiUrl: ""
+
+- author: camenduru
+  name: comfyui-colab
+  gitUrl: https://github.com/camenduru/comfyui-colab
+  civitaiUrl: https://civitai.com/models/25284/comfyui-colab
+
+- author: ltdrdata
+  name: ComfyUI-Manager
+  gitUrl: https://github.com/ltdrdata/ComfyUI-Manager
+  civitaiUrl: ""
+
+- author: rvion
+  name: CushyNodes
+  gitUrl: https://github.com/rvion/CushyNodes
+  civitaiUrl: ""
+
+- author: rvion
+  name: CushyStudio
+  gitUrl: https://github.com/rvion/CushyStudio
+  civitaiUrl: ""
+
+- author: WASasquatch
+  name: comfyui-plugins
+  gitUrl: https://github.com/WASasquatch/comfyui-plugins
+  civitaiUrl: ""
+
+- author: diontimmer
+  name: ComfyUI-Vextra-Nodes
+  gitUrl: https://github.com/diontimmer/ComfyUI-Vextra-Nodes
+  civitaiUrl: https://civitai.com/models/24869/comfyui-custom-nodes-by-xss
+
+- author: BlenderNeko
+  name: ComfyUI_Cutoff
+  gitUrl: https://github.com/BlenderNeko/ComfyUI_Cutoff
+  civitaiUrl: https://civitai.com/models/28295/cutoff-for-comfyui
+
+- author: Derfuu
+  name: Derfuu_ComfyUI_ModdedNodes
+  gitUrl: https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes
+  civitaiUrl: https://civitai.com/models/21558/
+
+- author: LucianoCirino
+  name: efficiency-nodes-comfyui
+  gitUrl: https://github.com/LucianoCirino/efficiency-nodes-comfyui
+  civitaiUrl: https://civitai.com/models/32342/efficiency-nodes-for-comfyui
+
+- author: m99
+  name: facerestore
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/24690/
+
+- author: Isle_of_Chaos
+  name: gpt-node-comfyui
+  gitUrl: https://civitai.com/models/31696/gpt-node-comfyui
+  civitaiUrl: ""
+
+- author: LEv145
+  name: images-grid-comfy-plugin
+  gitUrl: https://github.com/LEv145/images-grid-comfy-plugin
+  civitaiUrl: https://civitai.com/models/31126/imagesgrid-comfy-plugin-xy-plot
+
+- author: ltdrdata
+  name: ComfyUI-Impact-Pack
+  gitUrl: https://github.com/ltdrdata/ComfyUI-Impact-Pack
+  civitaiUrl: https://civitai.com/models/33192/comfyui-impact-pack
+
+- author: m99
+  name: comfyui-loopback-nodes
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/26836/comfyui-loopback-nodes
+
+- author: BadCafeCode
+  name: masquerade-nodes-comfyui
+  gitUrl: https://github.com/BadCafeCode/masquerade-nodes-comfyui
+  civitaiUrl: https://civitai.com/models/52723/masquerade-nodes-comfyui
+
+- author: Bocian
+  name: Multiple Subject Workflows
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/21100/
+
+- author: CyberSnacc
+  name: comfyui-node-setup-lora-stack
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/50440/comfyui-node-setup-lora-stack
+
+- author: xXAdonesXx
+  name: NodeGPT
+  gitUrl: https://github.com/xXAdonesXx/NodeGPT
+  civitaiUrl: https://civitai.com/models/33905/nodegpt
+
+- author: BlenderNeko
+  name: ComfyUI_ADV_CLIP_emb
+  gitUrl: https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb
+  civitaiUrl: https://civitai.com/models/46229
+
+- author: omar92
+  name: QualityOfLifeSuit_Omar92
+  gitUrl: https://github.com/omar92/ComfyUI-QualityOfLifeSuit_Omar92
+  civitaiUrl: https://civitai.com/models/21996
+
+- author: Kaharos94
+  name: ComfyUI-Saveaswebp
+  gitUrl: https://github.com/Kaharos94/ComfyUI-Saveaswebp
+  civitaiUrl: ""
+
+- author: fretts4505
+  name: simple-text-style-template-node-for-comfyui
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/28238/simple-text-style-template-node-for-comfyui
+
+- author: diSty
+  name: seait
+  gitUrl: https://github.com/diStyApps/seait
+  civitaiUrl: https://civitai.com/models/27574/
+
+- author: sylym
+  name: comfy_vid2vid
+  gitUrl: https://github.com/sylym/comfy_vid2vid
+  civitaiUrl: https://civitai.com/models/26799/vid2vid-node-suite-for-comfyui
+
+- author: ComfyUI_Dave_CustomNode
+  name: Davemane42
+  gitUrl: https://github.com/Davemane42/ComfyUI_Dave_CustomNode
+  civitaiUrl: https://civitai.com/models/24537/
+
+- author: WASasquatch
+  name: wass-comfyui-workspaces-hr-fix-and-more
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/20215/wass-comfyui-workspaces-hr-fix-and-more
+
+- author: WASasquatch
+  name: was-node-suite-comfyui
+  gitUrl: https://github.com/WASasquatch/was-node-suite-comfyui
+  civitaiUrl: https://civitai.com/models/20793/
+
+- author: ctdde
+  name: ComfyUI Workflows
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/22651/
+
+- author: CyberSnacc
+  name: embeddings_compare
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/54555/embeddingscompare-comfyui
+
+- author: pythongosssss
+  name: ComfyUI-Custom-Scripts
+  gitUrl: https://github.com/pythongosssss/ComfyUI-Custom-Scripts
+  civitaiUrl: ""
+
+- author: lilly1987
+  name: ComfyUI_node_Lilly
+  gitUrl: https://github.com/lilly1987/ComfyUI_node_Lilly
+  civitaiUrl: https://civitai.com/models/21611/
+
+- author: theally
+  name: Custom Workflows
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/20443/
+
+- author: theally
+  name: ComfyUI Custom Nodes
+  gitUrl: ""
+  civitaiUrl: https://civitai.com/models/19625/
+
+- author: trojblue
+  name: trNodes
+  gitUrl: https://github.com/trojblue/trNodes
+  civitaiUrl: ""

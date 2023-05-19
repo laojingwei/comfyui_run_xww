@@ -1,0 +1,6 @@
+/*
+!启动器-win64.exe
+!/.gitignore
+!/xww_lib/
+node_modules
+.venv

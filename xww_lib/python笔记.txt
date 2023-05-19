@@ -1,0 +1,101 @@
+pyenv install 3.9.0
+pyenv global 3.9.0这个命令会自动地设置你的环境变量，让你的python命令指向Python 3.9.0这个版本。你可以使用where python来查看你的python命令的路径，它应该是你的用户目录下的.pyenv\shims\python这个文件。这个文件是一个代理文件，它会根据你的pyenv设置来调用相应的Python版本。你也可以使用python --version来查看你当前使用的Python版本，它应该是Python 3.9.0。
+
+直接从官网或者其他网站下载Python的安装包，然后把它放在你的用户目录下的.pyenv\pyenv-win\install_cache文件夹中，然后再使用pyenv install 3.9.0命令来安装Python。
+
+如果你已经安装了Python 3.9.0，但是pyenv还是无法识别它，你可以尝试使用pyenv rehash命令来刷新pyenv的缓存，然后再次尝试。
+
+你可以使用pyenv global 3.9.0命令来把它设置为你的默认Python版本，或者使用pyenv local 3.9.0或者pyenv shell 3.9.0命令来设置项目或者终端的Python版本。你可以使用python --version命令来查看你当前使用的Python版本，它应该是Python 3.9.0。
+
+pyenv versions：列出所有已安装的Python版本
+pyenv version：显示当前使用的Python版本
+pyenv which python：显示当前使用的Python解释器的绝对路径
+
+pyenv install --list命令来查看pyenv可以下载哪些版本python123。这个命令会列出所有可用的python版本，包括官方的python、anaconda、pypy等。
+
+查看python环境变量python -m site
+
+python -m pip install --force-reinstall pybcj命令来强制重新安装pybcj
+使用python -c "import sys; print(sys.path)"命令来查看你的python解释器的搜索路径，看看是否和你的site模块输出一致。
+使用python -v -c "import pybcj"命令来查看你的python解释器在导入pybcj时的详细信息，看看是否有任何错误或警告。
+
+pip install --use-deprecated=legacy-resolver pybcj==命令，然后按下Tab键，它会自动补全可用的版本号(本人电脑试了没反应，不知道其它电脑行不行)
+
+
+venv创建虚拟环境：python -m venv --copies –upgrade F:\ai相关\comfyui启动器\comfyui_run_xww\xww_lib\.venv
+
+python打包
+pyinstaller --onefile --add-binary "./xww_lib/.venv/7z/7z.exe;." --icon=xwwicon.ico 启动器.py
+
+pyinstaller --onefile 下载ComfyUI项目.py
+
+pyinstaller --onefile --add-data "7z/*;7z" 下载ComfyUI项目.py
+
+
+图标标题设置：
+如果你想设置你的exe文件的图标和标题，你可以使用以下方法：
+使用–icon参数来指定一个.ico文件作为你的exe文件的图标1，例如：
+pyinstaller --onefile --icon=xww.ico 下载ComfyUI项目.py
+pyinstaller -F -w -i xww.ico 下载ComfyUI项目.py
+使用tkinter的title方法来设置你的GUI程序的标题2，例如：
+calculator = Tk() calculator.title("TBE Calculator")
+这样就可以让你的exe文件看起来更专业和美观。
+
+
+···
+pyinstaller -F -w -i xww.ico 下载ComfyUI项目.py
+    -i 图标路径
+    –icon=图标路径
+    -F 打包成一个exe文件
+    -w 使用窗口，无控制台
+    -c 使用控制台，无窗口
+    -D 创建一个目录，里面包含exe以及其他一些依赖性文件
+    pyinstaller -h 来查看参数
+    下载ComfyUI项目.py 表示要打包的Python脚本文件。
+pyinstaller --onefile --icon=xww.ico 下载ComfyUI项目.py
+    –onefile 表示将程序打包成一个单独的文件，与-F功能相同。
+    –icon=xww.ico 表示指定程序的图标文件为xww.ico，与-i xww.ico功能相同。
+    下载ComfyUI项目.py 表示要打包的Python脚本文件，与上面相同。
+···
+
+
+
+
+图片转换为ico网站：
+https://convertio.co/zh/png-ico/
+https://www.easyicon.net/covert/
+https://www.xnview.com/en/
+
+
+
+创建虚拟环境：
+1使用pip安装 pip install venv
+2使用venv命令创建一个虚拟环境，例如：python -m venv .venv 这会在你的项目目录下创建一个名为.venv的子目录，里面包含了Python解释器和相关文件
+3激活你的虚拟环境，这取决于你的操作系统和终端类型，例如，在Windows上，你可以使用：.venv\Scripts\activate.bat 或者 .venv\Scripts\Activate.ps1 在Linux或Mac上，你可以使用：source .venv/bin/activate ---- 
+激活：.\xww_lib\.venv\Scripts\Activate.ps1  关闭：deactivate
+4在激活的虚拟环境中，你可以使用pip安装你需要的库，例如：pip install requests 这些库会被安装在.venv/lib/site-packages目录下，而不会影响系统级别的Python
+5当你完成你的项目后，你可以使用deactivate命令退出虚拟环境，回到系统级别的Python
+6如果你使用pyinstaller打包你的项目，那么打包时会使用你激活的虚拟环境里的Python解释器和库。这意味着你打包出来的东西会包含虚拟环境里的依赖，而不会受到系统级别的Python的影响
+
+
+
+pil库：
+PIL是Python Imaging Library的缩写，它是一个强大的图像处理库，但是它已经停止开发了，只支持到Python 2.7版本3
+你可以使用Pillow作为PIL的替代品，它是PIL的一个友好的分支，支持Python 3.x版本，并且提供了更多的功能和优化1
+你可以使用pip命令在你的虚拟环境中安装Pillow，例如：pip install Pillow。这样你就可以在你的代码中导入PIL模块，例如：from PIL import Image1
+
+
+
+python的-s选项的含义。：
+-s选项是python命令的一个参数，它表示不添加用户的site-packages目录到sys.path中
+site-packages目录是一个存放第三方库的地方，通常使用pip安装的库会被放在这个目录下
+如果你使用-s选项，那么你就不能在你的代码中导入site-packages目录下的库，除非你显式地添加它们到sys.path中
+-s选项有时候可以用来隔离不同的Python环境，或者避免一些潜在的冲突
+
+
+如何使用pip更新依赖：
+使用pip list --outdated命令查看哪些库有可用的更新
+使用pip install -U package_name命令更新指定的库，例如：pip install -U requests
+使用pip install -U --upgrade-strategy=eager package_name命令更新指定的库以及它的所有依赖
+使用pip install -U --upgrade-strategy=only-if-needed package_name命令更新指定的库，但只更新它的必要依赖
+使用pip install -U -r requirements.txt命令更新requirements文件中指定的所有库
