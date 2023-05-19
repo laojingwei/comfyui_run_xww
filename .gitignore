@@ -2,5 +2,6 @@
 !启动器-win64.exe
 !/.gitignore
 !/xww_lib/
+!image
 node_modules
 .venv
