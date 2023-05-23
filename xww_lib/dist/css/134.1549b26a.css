@@ -1,1 +1,67 @@
-.title-bg[data-v-09d7c821]{margin-top:0;color:red;background:rgba(255,255,23,.8)}label[data-v-09d7c821]{margin:30px 0 0 0;padding:10px;color:#45bb00;border-radius:5px}.div-radio-box[data-v-09d7c821],label[data-v-09d7c821]{text-align:center;align-items:center;background:rgba(0,0,0,.8)}.div-radio-box[data-v-09d7c821]{display:flex;justify-content:center}.div-radio-box input[data-v-09d7c821]{margin:0 3px 0 10px}.div-radio-box label[data-v-09d7c821]{margin:0;background-color:rgba(0,0,0,.8)}textarea[data-v-09d7c821]{max-width:99.8%;background:#000;color:#fff;border-radius:5px}input[data-v-09d7c821]{font-size:20px;height:50px;border:1px solid #000;border-radius:2px;text-align:center;align-items:center}button[data-v-09d7c821]:hover{transform:scale(1.05)}button[data-v-09d7c821]{font-size:24px;margin:10px 30%;width:40%;background-image:linear-gradient(#333,#fffdfd);border:1px solid #000;border-radius:8px}button[data-v-09d7c821]:active{transform:scale(.95);background-image:linear-gradient(#504f4f,#fff)}
+.title-bg[data-v-09d7c821] {
+    margin-top: 0;
+    color: red;
+    background: rgba(255, 255, 23, .8)
+}
+
+label[data-v-09d7c821] {
+    margin: 30px 0 0 0;
+    padding: 10px;
+    color: #45bb00;
+    border-radius: 5px
+}
+
+.div-radio-box[data-v-09d7c821],
+label[data-v-09d7c821] {
+    text-align: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .8)
+}
+
+.div-radio-box[data-v-09d7c821] {
+    display: flex;
+    justify-content: center
+}
+
+.div-radio-box input[data-v-09d7c821] {
+    margin: 0 3px 0 10px
+}
+
+.div-radio-box label[data-v-09d7c821] {
+    margin: 0;
+    background-color: rgba(0, 0, 0, .8)
+}
+
+textarea[data-v-09d7c821] {
+    max-width: 99.8%;
+    background: #000;
+    color: #fff;
+    border-radius: 5px
+}
+
+input[data-v-09d7c821] {
+    font-size: 20px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    text-align: center;
+    align-items: center
+}
+
+button[data-v-09d7c821]:hover {
+    transform: scale(1.05)
+}
+
+button[data-v-09d7c821] {
+    font-size: 24px;
+    margin: 10px 30%;
+    width: 40%;
+    background-image: linear-gradient(#333, #fffdfd);
+    border: 1px solid #000;
+    border-radius: 8px
+}
+
+button[data-v-09d7c821]:active {
+    transform: scale(.95);
+    background-image: linear-gradient(#504f4f, #fff)
+}
