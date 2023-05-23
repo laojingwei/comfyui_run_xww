@@ -1734,6 +1734,73 @@
     url: https://huggingface.co/swl-models/anything-v3.0/resolve/main/Anything-V3.0-RE.safetensors
   configs: []
   controlnet: []
+  vae:
+  - author: novelai
+    lastModified: Tue, 31 Jan 2023 14:22:34 GMT
+    name: animevae.pt
+    size: 784.6859 MB
+    type: vae
+    url: https://huggingface.co/swl-models/animvae/resolve/main/animevae.pt
+  - author: naclbit
+    lastModified: Sat, 05 Nov 2022 15:45:00 GMT
+    name: autoencoder_fix_kl-f8-trinart_characters.ckpt
+    size: 385.9156 MB
+    type: vae
+    url: https://huggingface.co/naclbit/trinart_characters_19.2m_stable_diffusion_v1/resolve/ad4d802ee3e77ff3901b59e1d5b79e2ece764997/autoencoder_fix_kl-f8-trinart_characters.ckpt
+  - author: hakurei
+    lastModified: Sun, 09 Oct 2022 23:30:01 GMT
+    name: vae/kl-f8-anime.ckpt
+    size: 385.9119 MB
+    type: vae
+    url: https://huggingface.co/hakurei/waifu-diffusion-v1-4/resolve/4c4f05104055c029ad577c18ac176462f0d1d7c1/vae/kl-f8-anime.ckpt
+  - author: hakurei
+    lastModified: Sat, 15 Oct 2022 23:41:16 GMT
+    name: kl-f8-anime2.ckpt
+    size: 385.9160 MB
+    type: vae
+    url: https://huggingface.co/hakurei/waifu-diffusion-v1-4/resolve/4c4f05104055c029ad577c18ac176462f0d1d7c1/vae/kl-f8-anime2.ckpt
+  - author: stabilityai
+    lastModified: Thu, 13 Oct 2022 03:59:39 GMT
+    name: vae-ft-ema-560000-ema-pruned.ckpt
+    size: 319.1902 MB
+    type: vae
+    url: https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/e21db4dc8d4f2675c2ffef479c4c893e83bceada/vae-ft-ema-560000-ema-pruned.ckpt
+  - author: stabilityai
+    lastModified: Thu, 15 Dec 2022 20:22:02 GMT
+    name: vae-ft-ema-560000-ema-pruned.safetensors
+    size: 319.1387 MB
+    type: vae
+    url: https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/e21db4dc8d4f2675c2ffef479c4c893e83bceada/vae-ft-ema-560000-ema-pruned.safetensors
+  - author: stabilityai
+    lastModified: Thu, 13 Oct 2022 10:14:04 GMT
+    name: vae-ft-mse-840000-ema-pruned.ckpt
+    size: 319.1902 MB
+    type: vae
+    url: https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.ckpt
+  - author: stabilityai
+    lastModified: Thu, 15 Dec 2022 20:22:45 GMT
+    name: vae-ft-mse-840000-ema-pruned.safetensors
+    size: 319.1387 MB
+    type: vae
+    url: https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors
+  - author: ClearVAE
+    lastModified: Sun, 09 Apr 2023 06:53:51 GMT
+    name: ClearVAE-NansLessTest.safetensors
+    size: 319.1385 MB
+    type: vae
+    url: https://huggingface.co/swl-models/ClearVAE/resolve/fbfb378dd18a2ce517c3a2618ce5d8cdafc130f9/ClearVAE-NansLessTest.safetensors
+  - author: ClearVAE
+    lastModified: Sun, 09 Apr 2023 06:53:51 GMT
+    name: ClearVAE-Variant.safetensors
+    size: 319.1385 MB
+    type: vae
+    url: https://huggingface.co/swl-models/ClearVAE/resolve/fbfb378dd18a2ce517c3a2618ce5d8cdafc130f9/ClearVAE-Variant.safetensors
+  - author: ClearVAE
+    lastModified: Sun, 09 Apr 2023 06:53:51 GMT
+    name: ClearVAE.safetensors
+    size: 319.1385 MB
+    type: vae
+    url: https://huggingface.co/swl-models/ClearVAE/resolve/fbfb378dd18a2ce517c3a2618ce5d8cdafc130f9/ClearVAE.safetensors
   embeddings:
   - author: toooajk
     lastModified: Wed, 01 Feb 2023 01:34:45 GMT

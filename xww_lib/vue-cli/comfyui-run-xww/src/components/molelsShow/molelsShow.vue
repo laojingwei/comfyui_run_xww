@@ -382,12 +382,16 @@ export default {
                     clearTimeout(this[refName]);
                     if (this.$DownloadModelFlag && this.$DownloadModelFlag === refName + "#-#success") {
                         this.$Toast.show(this.CHENFLAF ? '安装成功' : 'Install successfully', 3000);
-                        this.$refs[refName][0].innerText = this.CHENFLAF ? "已安装" : "Installed";
+                        if (this.$refs[refName] && this.$refs[refName][0]) {
+                            this.$refs[refName][0].innerText = this.CHENFLAF ? "已安装" : "Installed";
+                        }
                     } else if (this.$DownloadModelFlag && this.$DownloadModelFlag === refName + "#-#error") {
-                        this.$refs[refName][0].disabled = false;
-                        this.$refs[refName][0].innerText = this.CHENFLAF ? "安装" : "Install";
-                        this.$refs[refName][0].style.backgroundColor = "";
-                        this.$refs[refName][0].style.color = "";
+                        if (this.$refs[refName] && this.$refs[refName][0]) {
+                            this.$refs[refName][0].disabled = false;
+                            this.$refs[refName][0].innerText = this.CHENFLAF ? "安装" : "Install";
+                            this.$refs[refName][0].style.backgroundColor = "";
+                            this.$refs[refName][0].style.color = "";
+                        }
                         this.$Toast.show(this.CHENFLAF ? '安装失败' : 'Installation failed', 3000);
                     } else {
                         this.$Toast.show(this.CHENFLAF ? `正在安装中，请耐心等待。。。${this.emoji[Math.floor(Math.random() * 20)]}` : `Installation underway, please be patient...${this.emoji[Math.floor(Math.random() * 20)]}`);
@@ -403,10 +407,12 @@ export default {
             let url = item.url;
             if (url) {
                 this.$Toast.show(this.CHENFLAF ? '正在安装中，请耐心等待。。。' : 'Installation underway, please be patient...');
-                this.$refs[refName][0].disabled = true;
-                this.$refs[refName][0].innerText = this.CHENFLAF ? "安装中..." : "Installation in progress";
-                this.$refs[refName][0].style.backgroundColor = "#787878";
-                this.$refs[refName][0].style.color = "#000000";
+                if (this.$refs[refName] && this.$refs[refName][0]) {
+                    this.$refs[refName][0].disabled = true;
+                    this.$refs[refName][0].innerText = this.CHENFLAF ? "安装中..." : "Installation in progress";
+                    this.$refs[refName][0].style.backgroundColor = "#787878";
+                    this.$refs[refName][0].style.color = "#000000";
+                }
                 this.$Xwwqt.downloadModel([{ url: url, typ: this.selectModelIndex, path: "", emitValue: refName }]);
                 this.downloadModelTime(refName);
             }

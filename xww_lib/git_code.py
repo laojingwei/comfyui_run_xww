@@ -531,3 +531,24 @@ def check_xww_v():
 #         print(e)
 # print (modelData)
 # save_data(modelData, "model.yaml","yaml")
+
+
+# import requests 
+# modelData = get_save_data("model1.yaml","yaml")
+# print(modelData)
+# def getUrlData(l):
+#     for item in l:
+#         r = requests.get(item["url"], stream=True) # 使用stream参数，可以分块下载
+#         lastModified = r.headers.get("Last-Modified")
+#         total_size = int(r.headers.get("content-length")) # 获取文件的总大小
+#         M = total_size / 1024 / 1024
+#         G = total_size / 1024 / 1024 / 1024
+#         size = ""
+#         if M < 1000:
+#             size = f'{M:.4f} MB'
+#         else:
+#             size = f'{G:.4f} GB'
+#         item["size"] = size
+#         item["lastModified"] = lastModified
+# getUrlData(modelData['vae'])
+# save_data(modelData, "model2.yaml","yaml")
