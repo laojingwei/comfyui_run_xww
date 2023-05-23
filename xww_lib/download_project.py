@@ -5,14 +5,19 @@ import ch_en as ce
 
 def dowload(i):
     try:
-        speed_up = ["https://github.com","https://kgithub.com","https://hub.njuu.cf"]
+        speed_up = ["https://github.com","https://kgithub.com","https://hub.njuu.cf","https://huggingface.co"]
         path = "/comfyanonymous/ComfyUI/releases/download/latest/ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z"
+        if i == 3:
+            path = "/xww/xww_comfyui_resource/resolve/main/ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z"
+            path_ = f"{speed_up[3]}{path}"
+        else:
+            path_ = f"{speed_up[0]}{path}"
         if ce.getCHEN() == "EN":
             print("\n is downloading the integration package of the original author, please wait...")
-            print(f"\n You can go to this link to download the ComfyUI project:\n{speed_up[0]}{path}\n")
+            print(f"\n You can go to this link to download the ComfyUI project:\n{path_}\n")
         else:
             print("\n正在下载原作者的整合包，请稍等。。。")
-            print(f"\n如有需要可前往该链接自行下载，ComfyUI项目链接：\n{speed_up[0]}{path}\n")
+            print(f"\n如有需要可前往该链接自行下载，ComfyUI项目链接：\n{path_}\n")
         url = speed_up[i] + path
         # 下载zip文件
         r = requests.get(url, stream=True) # 使用stream参数，可以分块下载
