@@ -2,17 +2,20 @@
     <show-page :isShowBg="false" :time="3500">
         <div class="more-res">
             <div class="more-res-div">
-                {{ '分享一个关于AI资源比较全的网站 ' }}
-                <span class="blue text-dec"
-                    @click="openUrl_('https://chat123.fun/h5/?utm_source=a2a&type=chatgpt')">AI艺术天堂</span>
+                {{ CHENFLAFV ? '分享一个关于AI资源比较全的网站 ' : 'Share a more comprehensive website about AI resources ' }}
+                <span class="blue text-dec" @click="openUrl_('https://a2a.top/')">AI艺术天堂</span>
 
             </div>
             <div class="more-res-div">
-                chart-gtp（目前国内暂时免费可用，但后续会不会收费不清楚）
+                {{ CHENFLAFV ?
+                    'chart-gtp（目前国内暂时免费可用，但后续会不会收费不清楚）'
+                    :
+                    'chart-gtp (currently available for free in China, but it is not clear whether it will be charged later) '
+                }}
                 <span class="blue text-dec" @click="openUrl_('https://chat123.fun/h5/?utm_source=a')">CHAT-GTP</span>
             </div>
             <div class="more-res-div">
-                训练模型下载：
+                {{ CHENFLAFV ? '训练模型下载：' : 'Download the training model:' }}
                 <div>C站---<span class="blue text-dec" @click="openUrl_('https://civitai.com/')">civitai</span></div>
                 <div>国内C站---<span class="blue text-dec" @click="openUrl_('http://www.liandange.com/models')">炼丹阁</span>
                 </div>
