@@ -286,6 +286,13 @@ def git_comfyui_code(type):
         # 获取缓存
         if type != "refresh":
             refList = get_save_data("comfyui-git.yaml","yaml")
+            for item in refList:
+                if localHexsha == item["hexsha"]:
+                    item["isLocal"] = 1
+                else:
+                    item["isLocal"] = 0
+                item["path"] = comfyuiPath
+
         if not refList:
             if ce.getCHEN() == "EN":
                 print("Obtaining remote data may be slow, please wait...")
