@@ -82,10 +82,12 @@
         <br>
         <label>
             <span v-if="CHENFLAF">
-                启动器版本更新：点击可更新最新版
+                启动器版本更新：点击可更新最新版（进入该页面会自动校验是否为最新版，如何你开了代理请关闭代理再进入，要不然可能会一直卡着）
             </span>
             <span v-else>
-                Initiator version update: Click to update the latest version
+                Initiator version update: Click to update the latest version (Entering this page will automatically check
+                whether it is the latest version. If you have opened the proxy, please close the proxy before entering,
+                otherwise it may be stuck.)
             </span>
         </label>
         <button v-if="isLatestVersion">
@@ -142,17 +144,17 @@ export default {
                 clearTimeout(this.check_xww_vTimer)
                 if (this.$UpdateXwwV && this.$UpdateXwwV[0] === "start") {
                     let text = this.CHENFLAF ? "正在检查启动器版本，请稍等。。。" : "Checking launcher version, please wait...";
-                    // this.$Toast.show(text + this.emoji[Math.floor(Math.random() * 20)]);
+                    this.$Toast.show(text + this.emoji[Math.floor(Math.random() * 20)]);
                     this.check_xww_vTime();
                 } else if (this.$UpdateXwwV && this.$UpdateXwwV[0] === "error") {
                     let text = this.CHENFLAF ? "无法获取启动器最新版本信息" : "Unable to get the latest version information of the launcher";
-                    // this.$Toast.show(text);
+                    this.$Toast.show(text);
                 } else if (this.$UpdateXwwV && this.$UpdateXwwV[0]) {
                     let v = this.$UpdateXwwV[0];
                     if (v["localHexsha"] !== v["newHexsha"]) {
                         this.isLatestVersion = false;
                         let text = this.CHENFLAF ? "启动器有更新，你可点击最下面启动器更新按钮进行更新" : "The launcher has updated, you can click the launcher update button at the bottom to update";
-                        this.$Toast.show(text);
+                        this.$Toast.show(text, 5000);
                     } else {
                         this.isLatestVersion = true;
                     }
@@ -300,4 +302,5 @@ button:active {
     /* opacity: 0.8; */
     transform: scale(0.95);
     background-image: linear-gradient(rgb(80, 79, 79), rgb(255, 255, 255));
-}</style>
+}
+</style>
