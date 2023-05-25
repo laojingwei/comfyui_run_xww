@@ -16,9 +16,13 @@
             </div>
             <div class="more-res-div">
                 {{ CHENFLAFV ? '训练模型下载：' : 'Download the training model:' }}
-                <div>C站---<span class="blue text-dec" @click="openUrl_('https://civitai.com/')">civitai</span></div>
-                <div>国内C站---<span class="blue text-dec" @click="openUrl_('http://www.liandange.com/models')">炼丹阁</span>
+                <div>C站（无需登录直接下载，需要特殊网络）---<span class="blue text-dec"
+                        @click="openUrl_('https://civitai.com/')">civitai</span></div>
+                <div>国内C站（下载需要登录，无需特殊网络）---<span class="blue text-dec"
+                        @click="openUrl_('http://www.liandange.com/models')">炼丹阁</span>
                 </div>
+                <div>LiblibAi - 中国领先原创AI模型分享社区（无需登录直接下载，无需特殊网络）---<span class="blue text-dec"
+                        @click="openUrl_('https://www.liblibai.com/')">liblibai</span></div>
                 <div>喵手AI资源站-AI相关的相关模型，prmopt，软件等资源---<span class="blue text-dec"
                         @click="openUrl_('https://resource.miaoshouai.com/')">miaoshouai</span></div>
 
