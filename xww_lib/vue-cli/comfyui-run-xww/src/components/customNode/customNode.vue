@@ -138,10 +138,10 @@
                         :placeholder="CHENFLAF ? '请输入 git clone 地址，如：https://github.com/laojingwei/comfy_translation_node.git' : 'Enter git clone address such as：https://github.com/laojingwei/comfy_translation_node.git'" />
                     <button @click="gitClone(inputValue, 0)">
                         <span v-if="CHENFLAF">
-                            安装（普通）
+                            安装（github）
                         </span>
                         <span v-else>
-                            Installation (normal)
+                            Installation (github)
                         </span>
                     </button>
                     <button @click="gitClone(inputValue, 1)">
@@ -152,14 +152,14 @@
                             Installation (Acceleration 1)
                         </span>
                     </button>
-                    <button @click="gitClone(inputValue, 2)">
+                    <!-- <button @click="gitClone(inputValue, 2)">
                         <span v-if="CHENFLAF">
                             安装（加速2）
                         </span>
                         <span v-else>
                             Installation (Acceleration 2)
                         </span>
-                    </button>
+                    </button> -->
                     <div>
                         <div class="link-div">
                             <div class="sub-link-div">{{ CHENFLAF ? "名称/作者" : "name/author" }}</div>
@@ -194,8 +194,8 @@
                                     "Installation(normal)" }}</button>
                                 <button @click="check_git_url(item.gitUrl, 1, index)">{{ CHENFLAF ? "安装(加速1)" :
                                     "Installation(Acceleration1)" }}</button>
-                                <button @click="check_git_url(item.gitUrl, 2, index)">{{ CHENFLAF ? "安装(加速2)" :
-                                    "Installation(Acceleration2)" }}</button>
+                                <!-- <button @click="check_git_url(item.gitUrl, 2, index)">{{ CHENFLAF ? "安装(加速2)" :
+                                    "Installation(Acceleration2)" }}</button> -->
                             </div>
                             <div class="sub-link-div" v-else>
                                 <button @click="openUrl_(item.civitaiUrl)">{{ CHENFLAF ? "打开网址" : "Open URL" }}</button>

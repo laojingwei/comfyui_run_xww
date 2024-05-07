@@ -128,6 +128,8 @@ def get_git_data(rep_path,rep,isUpdate):
     # print(repo.git.fetch('--all'))
     # 当前哈希值
     localHexsha = repo.head.object.hexsha
+    print('head.name:',name)
+    print('localHexsha:',localHexsha)
     localTime = setTime(repo.head.object.authored_date)
     # 前一个版本
     commits = repo.iter_commits()
@@ -139,9 +141,8 @@ def get_git_data(rep_path,rep,isUpdate):
     except Exception as e:
         print(e)
         prevHexsha = ""
-
     # 最新哈希值
-    new = next(repo.iter_commits(all=True))
+    new = next(repo.iter_commits())
     newHexsha = new.hexsha
     newTime = setTime(new.authored_date)
 
@@ -173,6 +174,8 @@ def get_git_data(rep_path,rep,isUpdate):
 
 def setTime(t):
     # return datetime.fromtimestamp(t).isoformat().replace("T", " ")
+    if isinstance(t,int):
+        t = datetime.fromtimestamp(t)
     return t.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
 
 # 切换到指定提交版本
@@ -341,9 +344,9 @@ def git_comfyui_code(type,qobj=None):
 def getNewHexsha(repo,rep,t):
     try: 
         # repo_url = ""
-        remotes = repo.remotes
+        # remotes = repo.remotes
         # for remote in remotes:
-        #     repo_url = remote.url.replace(speed_up[0],"").replace(speed_up[1],"").replace(speed_up[2],"")
+        #     # repo_url = remote.url.replace(speed_up[0],"").replace(speed_up[1],"").replace(speed_up[2],"")
         #     if remote.name == "speedUP1":
         #         suremote = repo.remote("speedUP1")
         #         repo.delete_remote(suremote)
@@ -357,10 +360,11 @@ def getNewHexsha(repo,rep,t):
         # remotes.sort(key=lambda remote: remote.name) # 按升序排序
         # print(remotes)
         # remotes.sort(key=lambda remote: remote.name, reverse=True) # 按降序排序
-        print(remotes)
+        # print(remotes)
         # 遍历远程仓库对象
         # for remote in remotes:
         remote = repo.remote(name='origin')
+        # remote.url = remote.url.replace(speed_up[1],speed_up[0])
         print(remote.url,'--------------------------')
         try: 
             if ce.getCHEN() == "EN":
@@ -376,15 +380,17 @@ def getNewHexsha(repo,rep,t):
                 # 更改远程仓库的 URL 为新的 URL
                 old_remote_url = remote.url
                 new_remote_url = remote.url.replace(speed_up[0],speed_up[1])
+                remote.set_url(new_remote_url)
                 print(e)
                 if ce.getCHEN() == "EN":
-                    print(f"\nFailed to change the remote repository URL to {new_remote_url}")
+                    print(f"\nFailed to retrieve information from the remote repository {old_remote_url}, switching to {new_remote_url}...")
+                    # 再次尝试获取远程仓库的最新提交信息
+                    print(f"\nFetching the latest information from {new_remote_url}...",remote.url)
                 else:
-                    print(f"\n切换远程仓库URL失败，正在切换到{new_remote_url}。。。")
+                    print(f"\n获取远程仓库{old_remote_url}信息失败，正在切换到{new_remote_url}。。。")
+                    # 再次尝试获取远程仓库的最新提交信息
+                    print(f"\n再次尝试获取远程仓库的最新提交信息 {new_remote_url}...",remote.url)
                 
-                remote.set_url(new_remote_url)
-                # 再次尝试获取远程仓库的最新提交信息
-                print(f"\nFetching the latest information from {new_remote_url}...",remote.url)
                 remote.fetch()
                 remote.set_url(old_remote_url)
             refList = []
@@ -406,9 +412,9 @@ def getNewHexsha(repo,rep,t):
         except Exception as e:
             print(e)
             if ce.getCHEN() == "EN":
-                print(f"\nObtaining the latest information of {rep} node is enabled...")
+                print(f"\nUnable to retrieve the latest information for node {rep}...")
             else:
-                print(f"\n普通方式获取失败，正在启用加速获取{rep}节点最新信息。。。\n")
+                print(f"\n无法获取{rep}节点最新信息。。。\n")
         if t == "0":
             return None, None
         return []

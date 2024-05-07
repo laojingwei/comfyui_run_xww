@@ -12,18 +12,18 @@ module.exports = defineConfig({
     // eslint-loader 是否在保存的时候检查
     lintOnSave: true,
     configureWebpack: {
-        output: {
-            // 输出重构  打包编译后的 文件名称  【模块名称.版本号】
-            filename: `js/[name].${systemConfig.version}.js`,
-            chunkFilename: `js/[name].${systemConfig.version}.js`
-        },
-        plugins: [
-            new MiniCssExtractPlugin({
-                // 修改打包后css文件名
-                filename: `css/[name].${systemConfig.version}.css`,
-                chunkFilename: `css/[name].${systemConfig.version}.css`
-            })
-        ],
+        // output: {
+        //     // 输出重构  打包编译后的 文件名称  【模块名称.版本号】
+        //     filename: `js/[name].${systemConfig.version}.js`,
+        //     chunkFilename: `js/[name].${systemConfig.version}.js`
+        // },
+        // plugins: [
+        //     new MiniCssExtractPlugin({
+        //         // 修改打包后css文件名
+        //         filename: `css/[name].${systemConfig.version}.css`,
+        //         chunkFilename: `css/[name].${systemConfig.version}.css`
+        //     })
+        // ],
         performance: {
             hints: 'error', // 枚举
             maxAssetSize: 30000000, // 整数类型（以字节为单位） // 单个文件大小超出就提示
