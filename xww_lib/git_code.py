@@ -24,7 +24,7 @@ loadingList = ['-','/','\\']
 comfyuiPath = os.path.join(cwd, "ComfyUI_windows_portable", "ComfyUI")
 nodePath = os.path.join(cwd, "ComfyUI_windows_portable", "ComfyUI", "custom_nodes")
 webPath = os.path.join(cwd, "ComfyUI_windows_portable", "web", "extensions")
-speed_up = ["https://github.com","https://kgithub.com","https://hub.njuu.cf"]
+speed_up = ["https://github.com","https://gitclone.com/github.com","https://gitclone.com/github.com"]
 savedataPath = os.path.join(cwd, "xww_lib", "savedata")
 
 def is_program_installed(program_name):
@@ -172,7 +172,8 @@ def get_git_data(rep_path,rep,isUpdate):
     # return git_detail
 
 def setTime(t):
-    return datetime.fromtimestamp(t).isoformat().replace("T", " ")
+    # return datetime.fromtimestamp(t).isoformat().replace("T", " ")
+    return t.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
 
 # 切换到指定提交版本
 def git_checkout(rep_path,hexsha,name=None):
@@ -266,7 +267,7 @@ def file_stat(path,i):
         print(e)
         return 'error'
     
-def git_comfyui_code(type):
+def git_comfyui_code(type,qobj=None):
     try:
         # 打开本地仓库
         repo = git.Repo(comfyuiPath)
@@ -300,21 +301,35 @@ def git_comfyui_code(type):
                 print("正在获取远程数据，可能会比较慢，请稍等。。。")
             refList = getNewHexsha(repo,"ComfyUI",'1')
             # refList.extend(git_detail)
-            
-            # 获取本地所有分支的提交信息
-            for commit in repo.iter_commits(all=True):
+            # 获取提交记录的生成器
+            commit_generator = repo.iter_commits('origin/master')
+
+            # 计算提交记录的数量
+            commit_count = sum(1 for commit in commit_generator)
+            count = 0
+            # 获取本地的提交信息 all=True => 获取所有分支的提交信息
+            for commit in repo.iter_commits('origin/master'):
+                count += 1
+                per = (count/commit_count) * 100
+                per = f'{per:.4f} %'
+                try:
+                    if not qobj is None:
+                        qobj.progress.emit(per)
+                except Exception as e:
+                    print(e)
+
                 if ce.getCHEN() == "EN":
-                    print(f"In the process of acquiring---{random.choice(loadingList)}", end="\r")
+                    print(f"In the process of acquiring--- {random.choice(loadingList)} {per}", end="\r")
                 else:
-                    print(f"正在获取中---{random.choice(loadingList)}", end="\r")
+                    print(f"正在整理数据中--- {random.choice(loadingList)} {per}", end="\r")
                 isLocal = 0
                 if localHexsha == commit.hexsha:
                     isLocal  = 1
-                git_detail.append({"name":commit.name_rev.split()[1], "hexsha": commit.hexsha, "author": str(commit.author), "authored_datetime": commit.authored_datetime.isoformat().replace("T", " "), "message": commit.message.replace('\n',""), "isLocal": isLocal, "path": comfyuiPath, "gitUrl": gitUrl.replace(speed_up[1],speed_up[0]).replace(speed_up[2],speed_up[0])+"/commit/"+commit.hexsha})
+                git_detail.append({"name":commit.name_rev.split()[1], "hexsha": commit.hexsha, "author": str(commit.author), "authored_datetime": setTime(commit.authored_datetime), "message": commit.message.replace('\n',""), "isLocal": isLocal, "path": comfyuiPath, "gitUrl": gitUrl.replace(speed_up[1],speed_up[0]).replace(speed_up[2],speed_up[0])+"/commit/"+commit.hexsha})
             if ce.getCHEN() == "EN":
-                print("Updated to the latest code submission record")
+                print("\nUpdated to the latest code submission record")
             else:
-                print("已更新到最新代码提交记录")
+                print("\n已更新到最新代码提交记录")
             save_data(git_detail,"comfyui-git.yaml","yaml")
             refList = git_detail
         return refList
@@ -325,54 +340,75 @@ def git_comfyui_code(type):
 # 获取最新哈希值，如果普通获取报错自动使用加速方式获取
 def getNewHexsha(repo,rep,t):
     try: 
-        repo_url = ""
+        # repo_url = ""
         remotes = repo.remotes
-        for remote in remotes:
-            repo_url = remote.url.replace(speed_up[0],"").replace(speed_up[1],"").replace(speed_up[2],"")
-            if remote.name == "speedUP1":
-                suremote = repo.remote("speedUP1")
-                repo.delete_remote(suremote)
-            if remote.name == "speedUP2":
-                suremote = repo.remote("speedUP2")
-                repo.delete_remote(suremote)
-        repo.create_remote("speedUP1", speed_up[1]+repo_url)
-        repo.create_remote("speedUP2", speed_up[1]+repo_url)
-        remotes = repo.remotes
+        # for remote in remotes:
+        #     repo_url = remote.url.replace(speed_up[0],"").replace(speed_up[1],"").replace(speed_up[2],"")
+        #     if remote.name == "speedUP1":
+        #         suremote = repo.remote("speedUP1")
+        #         repo.delete_remote(suremote)
+        #     if remote.name == "speedUP2":
+        #         suremote = repo.remote("speedUP2")
+        #         repo.delete_remote(suremote)
+        # repo.create_remote("speedUP1", speed_up[1]+repo_url)
+        # repo.create_remote("speedUP2", speed_up[1]+repo_url)
+        # remotes = repo.remotes
         # print(remotes)
         # remotes.sort(key=lambda remote: remote.name) # 按升序排序
         # print(remotes)
-        remotes.sort(key=lambda remote: remote.name, reverse=True) # 按降序排序
-        # print(remotes)
+        # remotes.sort(key=lambda remote: remote.name, reverse=True) # 按降序排序
+        print(remotes)
         # 遍历远程仓库对象
-        for remote in remotes:
-            try: 
-                if ce.getCHEN() == "EN":
-                    print(f"\nGet the latest information about the {rep} code... {remote}")
-                else:
-                    print(f"\n获取{rep}代码最新信息。。。{remote}")
-                remote = repo.remote(remote.name)
+        # for remote in remotes:
+        remote = repo.remote(name='origin')
+        print(remote.url,'--------------------------')
+        try: 
+            if ce.getCHEN() == "EN":
+                print(f"\nGet the latest information about the {rep} code... {remote}")
+            else:
+                print(f"\n获取{rep}代码最新信息。。。{remote}")
+            # remote = repo.remote(remote.name)
+            
+            try:
+                # 获取远程仓库的最新提交信息
                 remote.fetch()
-                refList = []
-                for ref in remote.refs:
-                    if ce.getCHEN() == "EN":
-                        print(f"\nThe latest remote repository changes for {rep} have been successfully obtained as follows: ------- :")
-                    else:
-                        print(f"已成功获取{rep}最新远程仓库变更，详情如下-------：")
-                    print(ref.name, ref.commit.hexsha, ref.commit.authored_datetime, ref.commit.message,'\n')
-                    remoteurl = remote.url
-                    if remoteurl.endswith(".git"):
-                        remoteurl = remoteurl[:-4]
-                    gitUrl = remoteurl.replace(speed_up[1],speed_up[0]).replace(speed_up[2],speed_up[0])+"/commit/"+ref.commit.hexsha
-                    if t == "0":
-                        return ref.commit.hexsha, ref.commit.authored_datetime.isoformat()
-                    refList.append({"name": ref.name, "hexsha": ref.commit.hexsha, "authored_datetime": ref.commit.authored_datetime.isoformat().replace("T", " "), "message": ref.commit.message.replace('\n',""), "isLocal": 0, "path": comfyuiPath, "gitUrl": gitUrl})
-                return refList
             except Exception as e:
+                # 更改远程仓库的 URL 为新的 URL
+                old_remote_url = remote.url
+                new_remote_url = remote.url.replace(speed_up[0],speed_up[1])
                 print(e)
                 if ce.getCHEN() == "EN":
-                    print(f"\nObtaining the latest information of {rep} node is enabled...")
+                    print(f"\nFailed to change the remote repository URL to {new_remote_url}")
                 else:
-                    print(f"\n普通方式获取失败，正在启用加速获取{rep}节点最新信息。。。\n")
+                    print(f"\n切换远程仓库URL失败，正在切换到{new_remote_url}。。。")
+                
+                remote.set_url(new_remote_url)
+                # 再次尝试获取远程仓库的最新提交信息
+                print(f"\nFetching the latest information from {new_remote_url}...",remote.url)
+                remote.fetch()
+                remote.set_url(old_remote_url)
+            refList = []
+            for ref in remote.refs:
+                if ce.getCHEN() == "EN":
+                    print(f"\nThe latest remote repository changes for {rep} have been successfully obtained as follows: ------- :")
+                else:
+                    print(f"已成功获取{rep}最新远程仓库变更，详情如下-------：")
+                print(ref.name, ref.commit.hexsha, setTime(ref.commit.authored_datetime), ref.commit.message,'\n')
+                remoteurl = remote.url
+                # print('remoteurl---',remoteurl)
+                if remoteurl.endswith(".git"):
+                    remoteurl = remoteurl[:-4]
+                gitUrl = remoteurl.replace(speed_up[1],speed_up[0]).replace(speed_up[2],speed_up[0])+"/commit/"+ref.commit.hexsha
+                if t == "0":
+                    return ref.commit.hexsha, setTime(ref.commit.authored_datetime)
+                refList.append({"name": ref.name, "hexsha": ref.commit.hexsha, "authored_datetime": setTime(ref.commit.authored_datetime), "message": ref.commit.message.replace('\n',""), "isLocal": 0, "path": comfyuiPath, "gitUrl": gitUrl})
+            return refList
+        except Exception as e:
+            print(e)
+            if ce.getCHEN() == "EN":
+                print(f"\nObtaining the latest information of {rep} node is enabled...")
+            else:
+                print(f"\n普通方式获取失败，正在启用加速获取{rep}节点最新信息。。。\n")
         if t == "0":
             return None, None
         return []

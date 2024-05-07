@@ -35,7 +35,6 @@ export default {
     },
     data() {
         return {
-            CHENFLAF: '',
             showPagePath: '',
             pageIndex: null,
             isRouterAlive: true,

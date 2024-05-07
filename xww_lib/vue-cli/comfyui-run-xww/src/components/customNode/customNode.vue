@@ -331,7 +331,7 @@ export default {
         },
         file_stat_tips(e) {
             if (e) {
-                this.$Toast.show(this.CHENFLAF ? '禁用期间，启动ComfyUI控制台出现下面提示是正常的： Skip F:\\xxx\\ComfyUI_windows_portable\ComfyUI\\custom_nodes\\xxx module for custom nodes due to the lack of NODE_CLASS_MAPPINGS.' : 'When disabled, the following message is normal when starting the ComfyUI console: Skip F:\\xxx\\ComfyUI_windows_portable\ComfyUI\\custom_nodes\\xxx module for custom nodes due to the lack of NODE_CLASS_MAPPINGS.', 30000, e.clientX, e.clientY);
+                this.$Toast.show(this.CHENFLAF ? '禁用期间，启动ComfyUI控制台出现下面提示是正常的： Skip F:\\xxx\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\xxx module for custom nodes due to the lack of NODE_CLASS_MAPPINGS.' : 'When disabled, the following message is normal when starting the ComfyUI console: Skip F:\\xxx\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\xxx module for custom nodes due to the lack of NODE_CLASS_MAPPINGS.', 30000, e.clientX, e.clientY);
             } else {
                 this.$Toast.hide();
             }

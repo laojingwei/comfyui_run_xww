@@ -88,6 +88,9 @@ function initQWebChannel() {
             Vue.prototype.$Xwwqt.gitFlag.connect((data) => {
                 Vue.prototype.$GitFlag = data;
             });
+            Vue.prototype.$Xwwqt.progress.connect((data) => {
+                Vue.prototype.$Progress = data;
+            });
             Vue.prototype.$Xwwqt.gitCloneFlag.connect((data) => {
                 Vue.prototype.$GitCloneFlag = data;
             });

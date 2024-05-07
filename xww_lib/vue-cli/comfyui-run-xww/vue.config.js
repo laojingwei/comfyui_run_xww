@@ -23,10 +23,7 @@ module.exports = defineConfig({
                 filename: `css/[name].${systemConfig.version}.css`,
                 chunkFilename: `css/[name].${systemConfig.version}.css`
             })
-        ]
-    },
-    // 增加支持http
-    configureWebpack: {
+        ],
         performance: {
             hints: 'error', // 枚举
             maxAssetSize: 30000000, // 整数类型（以字节为单位） // 单个文件大小超出就提示
@@ -38,6 +35,19 @@ module.exports = defineConfig({
         },
         resolve: { fallback: { http: require.resolve('stream-http') } }
     },
+    // // 增加支持http
+    // configureWebpack: {
+    //     performance: {
+    //         hints: 'error', // 枚举
+    //         maxAssetSize: 30000000, // 整数类型（以字节为单位） // 单个文件大小超出就提示
+    //         maxEntrypointSize: 500000000, // 整数类型（以字节为单位） // 入口文件大小超出设定的值 就提示
+    //         assetFilter: function (assetFilename) {
+    //             // 提供资源文件名的断言函数
+    //             return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
+    //         }
+    //     },
+    //     resolve: { fallback: { http: require.resolve('stream-http') } }
+    // },
     // configureWebpack: {
     //     // webpack < 5 npm install stream-http
     //     // resolve: {

@@ -43,25 +43,33 @@
                 web disk ComfyUI integration package to download, I can not afford to open the web disk (⊙o⊙)...
             </span>
         </label>
-        <button @click="downLoad(3)">
+        <button @click="downLoad(0,1)">
             <span v-if="CHENFLAF">
-                项目下载（推荐下载）
+                项目下载（github）-新版
             </span>
             <span v-else>
-                Project download (recommended download)
+                Project download (github)
             </span>
         </button>
-        <br>
-        <button @click="downLoad(0)">
-            <span v-if="CHENFLAF">
-                项目下载（普通下载）
-            </span>
-            <span v-else>
-                Project download (normal download)
-            </span>
-        </button>
-        <br>
         <button @click="downLoad(1)">
+            <span v-if="CHENFLAF">
+                项目下载（huggingface）-旧版
+            </span>
+            <span v-else>
+                Project download (huggingface)
+            </span>
+        </button>
+        <br>
+        <button @click="downLoad(0,0)">
+            <span v-if="CHENFLAF">
+                项目下载（github）-旧版
+            </span>
+            <span v-else>
+                Project download (github)
+            </span>
+        </button>
+        <br>
+        <!-- <button @click="downLoad(1)">
             <span v-if="CHENFLAF">
                 项目下载（国内加速1下载）
             </span>
@@ -77,7 +85,7 @@
             <span v-else>
                 Project download (Domestic accelerated 2 download)
             </span>
-        </button>
+        </button> -->
         <br>
         <br>
         <label>
@@ -143,12 +151,12 @@ export default {
             this.check_xww_vTimer = setTimeout(() => {
                 clearTimeout(this.check_xww_vTimer)
                 if (this.$UpdateXwwV && this.$UpdateXwwV[0] === "start") {
-                    let text = this.CHENFLAF ? "正在检查启动器版本，请稍等。。。" : "Checking launcher version, please wait...";
-                    this.$Toast.show(text + this.emoji[Math.floor(Math.random() * 20)]);
-                    this.check_xww_vTime();
+                    // let text = this.CHENFLAF ? "正在检查启动器版本，请稍等。。。" : "Checking launcher version, please wait...";
+                    // this.$Toast.show(text + this.emoji[Math.floor(Math.random() * 20)]);
+                    // this.check_xww_vTime();
                 } else if (this.$UpdateXwwV && this.$UpdateXwwV[0] === "error") {
-                    let text = this.CHENFLAF ? "无法获取启动器最新版本信息" : "Unable to get the latest version information of the launcher";
-                    this.$Toast.show(text);
+                    // let text = this.CHENFLAF ? "无法获取启动器最新版本信息" : "Unable to get the latest version information of the launcher";
+                    // this.$Toast.show(text);
                 } else if (this.$UpdateXwwV && this.$UpdateXwwV[0]) {
                     let v = this.$UpdateXwwV[0];
                     if (v["localHexsha"] !== v["newHexsha"]) {
@@ -223,13 +231,13 @@ export default {
             this.$Xwwqt.update_xww(v.newHexsha);
             this.updateXwwTime();
         },
-        downLoad(i) {
+        downLoad(i,k) {
             if (this.$DonloadFlag === "start" || this.$UpdateCuiBat === "start" || this.$UpdateXww === "start") {
                 this.$Toast.show(this.CHENFLAF ? '已有其它任务正在下载中，请稍等。。。' : 'Other tasks are downloading, please wait...', 3000);
                 return;
             }
             this.$Toast.show(this.CHENFLAF ? "正在下载项目，请耐心等待，可前往控制台查看下载进度" : "Downloading the project, please wait patiently, you can go to the console to check the download progress", 3000);
-            this.$Xwwqt.downloadProject(i);
+            this.$Xwwqt.downloadProject(i,k);
             this.downLoadTime();
         },
         downLoadTime() {

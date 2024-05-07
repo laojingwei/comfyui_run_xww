@@ -153,6 +153,8 @@ def start():
             updateXww = Signal(str)
             donloadFlag = Signal(str)
             threadList = Signal(list)
+            # 进度
+            progress = Signal(str)
             # 定义属性变化时的信号
             myPropertyChanged = Signal(str)
 
@@ -360,14 +362,14 @@ def start():
                 qobj.isHaveComfyUI.emit(isHave)
 
             # 下载项目
-            @Slot(int)
-            def downloadProject(qobj,i):
+            @Slot(int, int)
+            def downloadProject(qobj,i,k):
                 qobj.donloadFlag.emit("start")
                 # 创建一个后台线程来执行文件下载
-                thread = threading.Thread(target=qobj.downloadProject_, args=(i,))
+                thread = threading.Thread(target=qobj.downloadProject_, args=(i,k,))
                 thread.start()
-            def downloadProject_(qobj,i):
-                flag = dp.dowload(int(i))
+            def downloadProject_(qobj,i,k):
+                flag = dp.dowload(int(i),int(k))
                 if flag == "error":
                     qobj.donloadFlag.emit("error")
                     return
@@ -654,7 +656,7 @@ def start():
                 thread = threading.Thread(target=qobj.git_comfyui_code_, args=(qobj, type,))
                 thread.start()
             def git_comfyui_code_(slef,qobj,type):
-                data = gc.git_comfyui_code(type)
+                data = gc.git_comfyui_code(type,qobj)
                 qobj.gitComfyuiData.emit(data)
                 # print(data)
                 qobj.gitFlag.emit('success')
