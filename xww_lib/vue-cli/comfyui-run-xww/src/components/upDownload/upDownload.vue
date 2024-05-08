@@ -45,7 +45,7 @@
                 Project download (github)-New version
             </span>
         </button>
-        <button @click="openUrl_('https://pan.baidu.com/s/1jH67y')">
+        <button @click="openUrl_('https://pan.baidu.com/s/1G9GysHhFddoExlLkw2Rwdw?pwd=xwwx')">
             <span v-if="CHENFLAF">
                 项目下载（百度云）-新版
             </span>
