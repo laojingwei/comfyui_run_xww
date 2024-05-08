@@ -64,8 +64,12 @@ def clone_from(path, i):
         # git.Repo.clone_from(path, node_path)
         p = subprocess.Popen([git_exe, "clone", path, node_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = p.communicate()
-        print(stdout.decode("utf-8"))
-        print(stderr.decode("utf-8"))
+        print('stdout-✔->',stdout.decode("utf-8"))
+        if not os.path.isdir(node_path):
+            print('stderr-✘->',stderr.decode("utf-8"))
+            return 'error'
+        
+        print('stderr-✔->',stderr.decode("utf-8"))
         global isUpdate
         isUpdate = True
         if ce.getCHEN() == "EN":
@@ -333,6 +337,8 @@ def git_comfyui_code(type,qobj=None):
                 print("\nUpdated to the latest code submission record")
             else:
                 print("\n已更新到最新代码提交记录")
+            if not qobj is None:
+                qobj.progress.emit('--')
             save_data(git_detail,"comfyui-git.yaml","yaml")
             refList = git_detail
         return refList
@@ -364,8 +370,12 @@ def getNewHexsha(repo,rep,t):
         # 遍历远程仓库对象
         # for remote in remotes:
         remote = repo.remote(name='origin')
+        nru = remote.url.replace(speed_up[1],speed_up[0])
+        remote.set_url(nru)
+        remote = repo.remote(name='origin')
+        old_remote_url = remote.url
         # remote.url = remote.url.replace(speed_up[1],speed_up[0])
-        print(remote.url,'--------------------------')
+        print('remote_url',old_remote_url,'--------------------------')
         try: 
             if ce.getCHEN() == "EN":
                 print(f"\nGet the latest information about the {rep} code... {remote}")
@@ -378,7 +388,6 @@ def getNewHexsha(repo,rep,t):
                 remote.fetch()
             except Exception as e:
                 # 更改远程仓库的 URL 为新的 URL
-                old_remote_url = remote.url
                 new_remote_url = remote.url.replace(speed_up[0],speed_up[1])
                 remote.set_url(new_remote_url)
                 print(e)

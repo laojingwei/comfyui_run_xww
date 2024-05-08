@@ -13,7 +13,7 @@ from PIL import Image
 import json
 import imghdr
 import io
-import yaml
+# import yaml
 import webbrowser
     
 from PySide6.QtWidgets import QApplication, QMessageBox, QWidget, QHBoxLayout, QSizePolicy
@@ -369,7 +369,7 @@ def start():
                 thread = threading.Thread(target=qobj.downloadProject_, args=(i,k,))
                 thread.start()
             def downloadProject_(qobj,i,k):
-                flag = dp.dowload(int(i),int(k))
+                flag = dp.dowload(int(i),int(k),qobj)
                 if flag == "error":
                     qobj.donloadFlag.emit("error")
                     return
@@ -639,9 +639,9 @@ def start():
             def clone_from(qobj, path, i, name):
                 qobj.gitCloneFlag.emit(f"start#-#{name}")
                 if ce.getCHEN() == "EN":
-                    print("\nReady to download...\n")
+                    print("\nReady to download...\n", path)
                 else:
-                    print("\n准备下载中。。。\n")
+                    print("\n准备下载中。。。\n", path)
                 thread = threading.Thread(target=qobj.clone_from_, args=(qobj, path, i,name,))
                 thread.start()
             def clone_from_(self, qobj, path, i,name):

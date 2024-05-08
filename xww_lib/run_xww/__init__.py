@@ -299,3 +299,5 @@ def UpscaleModelLoaderDec(func):
     return wrapper
 
 UpscaleModelLoader.INPUT_TYPES = UpscaleModelLoaderDec(UpscaleModelLoader.INPUT_TYPES)
+NODE_CLASS_MAPPINGS = {}
+# __all__ = ['NODE_CLASS_MAPPINGS']

@@ -233,7 +233,7 @@ export default {
             this.getComfyuiDataTimer = setTimeout(() => {
                 clearTimeout(this.getComfyuiDataTimer);
                 // this.$Xwwqt.py_print(this.$GitFlag)
-                let process = this.$Progress || '0%';
+                let progress = this.$Progress || '0%';
                 if (this.$GitFlag && this.$GitFlag === "success") {
                     this.setCyData();
                     this.$Toast.show(this.CHENFLAF ? '刷新完成' : 'Refresh complete');
@@ -241,7 +241,7 @@ export default {
                     this.$Toast.show(this.CHENFLAF ? '刷新失败' : 'Refresh failure');
                 } else {
                     this.tip = this.CHENFLAF ? ['正在获取自定义节点最新信息。。。', '这么慢？嗯，是有点慢。。。', '努力加载中，请稍等。。。', '国内gitHub环境就这样。。。', '有时稍微等会也是一种放松。。。'] : ['Getting updates on custom nodes... ', ' so slow? Well, a little slow... ', 'trying to load, please wait... ', ' the domestic gitHub environment is like this... ', 'sometimes waiting a little is a kind of relaxation... ']
-                    this.$Toast.show('▁▂▃▄▅ '+process+' ▅▄▃▂▁<br>'+this.tip[Math.floor(Math.random() * 5)] + this.emoji[Math.floor(Math.random() * 20)]);
+                    this.$Toast.show('▁▂▃▄▅ '+progress+' ▅▄▃▂▁<br>'+this.tip[Math.floor(Math.random() * 5)] + this.emoji[Math.floor(Math.random() * 20)]);
                     this.getComfyuiDataTime();
                 }
             }, 1000);

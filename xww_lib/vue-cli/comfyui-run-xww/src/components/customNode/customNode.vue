@@ -160,7 +160,7 @@
                             Installation (Acceleration 2)
                         </span>
                     </button> -->
-                    <div>
+                    <div style="height: 50vh; overflow-y: auto;">
                         <div class="link-div">
                             <div class="sub-link-div">{{ CHENFLAF ? "名称/作者" : "name/author" }}</div>
                             <div class="sub-link-div">{{ CHENFLAF ? "地址" : "url" }}</div>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="link-div" v-for="(item, index) in customNodeLink" :key="index + item.name"
                             :ref="index + refEnd">
-                            <div class="sub-link-div">
+                            <div class="sub-link-div" @mouseenter="mouseenterFun(item)" @mouseleave="mouseleaveFun">
                                 <div v-html="item.name"></div>
                                 <div class="gray" v-html="item.author"></div>
                             </div>
@@ -261,6 +261,12 @@ export default {
     },
 
     methods: {
+        mouseenterFun(item) {
+            item.description && this.$Toast.show(this.CHENFLAF ?item.descriptionCN:item.description, 30000);
+        },
+        mouseleaveFun() {
+            this.$Toast.hide();
+        },
         clear() {
             this.searchValue = "";
         },
@@ -319,12 +325,16 @@ export default {
         },
         check_git_url(url, i, j) {
             if (url) {
+                url = url.replace(`<span style="background-color: #55ff00;">`, "").replace("</span>", "");
                 !url.endsWith(".git") && (url = `${url}.git`)
                 this.gitClone(url, i, j)
             }
         },
         openUrl_(url) {
-            url && this.$Xwwqt.openUrl(url)
+            if (url) {
+                url = url.replace(`<span style="background-color: #55ff00;">`, "").replace("</span>", "");
+                this.$Xwwqt.openUrl(url)
+            }
         },
         openUrl(item, hexsha) {
             item.git_detail.gitUrl && this.$Xwwqt.openUrl(item.git_detail.gitUrl + hexsha)

@@ -3,9 +3,19 @@ import time
 import subprocess
 import ch_en as ce
 import os
+# import re
+# import shutil
 
-def dowload(i,k):
+def dowload(i,k,qobj=None):
     try:
+        extract_folder = "ComfyUI_windows_portable"
+        # print(os.path.exists(extract_folder))
+        if os.path.exists(extract_folder):
+            if ce.getCHEN() == "EN":
+                print("The integrated package has been downloaded, no need to download again...")
+            else:
+                print("已存在整合包，无需再次下载。。。")
+            return
         speed_up = ["https://github.com","https://huggingface.co"]
         path = ["/comfyanonymous/ComfyUI/releases/download/latest/ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z","/comfyanonymous/ComfyUI/releases/download/latest/ComfyUI_windows_portable_nvidia_cu121_or_cpu.7z","/xww/xww_comfyui_resource/resolve/main/ComfyUI_windows_portable_nvidia_cu118_or_cpu.7z"]
         if i != 0:
@@ -53,10 +63,20 @@ def dowload(i,k):
                         # kb/s = M/s * 8000
                         # M/s = B/s/1048576
                         # 速度单位时 1KB/s=8Kb/s 1MB/s=8Mb/s 1GB/s=8Gb/s
+                        text = ''
+                        text1 = ''
                         if ce.getCHEN() == "EN":
-                            print(f"[{bar}] {progress:.2f}%  {speed_KB:.4f}KB/s  {speed_MB:.4f}MB/s  anticipated:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}minute  ", end="\r") # 显示进度条、百分比和速度
+                            text = f"[{bar}] {progress:.2f}%  {speed_KB:.4f}KB/s  {speed_MB:.4f}MB/s  anticipated:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}minute  "
+                            text1 = f"   {speed_KB:.4f}KB/s<br>{speed_MB:.4f}MB/s<br>anticipated:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}minute<br>   "
                         else:
-                            print(f"[{bar}] {progress:.2f}%  {speed_KB:.4f}KB/s  {speed_MB:.4f}MB/s  预计:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}分钟  ", end="\r") # 显示进度条、百分比和速度
+                            text = f"[{bar}] {progress:.2f}%  {speed_KB:.4f}KB/s  {speed_MB:.4f}MB/s  预计:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}分钟  "
+                            text1 = f"   {speed_KB:.4f}KB/s<br>{speed_MB:.4f}MB/s<br>预计:{(total_size-downloaded_size)/speed_MB/1024/1024/60 :.2f}分钟<br>   "
+
+                        if not qobj is None:
+                            qobj.progress.emit(text1) # 显示进度条、百分比和速度
+                        print(text, end="\r") # 显示进度条、百分比和速度
+            if not qobj is None:
+                qobj.progress.emit('--')
             if ce.getCHEN() == "EN":
                 print(f"\n\n Download time:{time.time() - start :.4f}s  {(time.time() - start)/60 :.2f}minute\n")
             else:
@@ -72,11 +92,37 @@ def dowload(i,k):
             print(f"Unzipping {file_name}, the unzipping process may be slow, please be patient...")
         else:
             print(f"正在解压 {file_name} ,解压过程可能会比较慢，请耐心等待。。。")
-        extract_folder = "ComfyUI_windows_portable2"
-        # # 由于py7zr不支持bcj2算法，这里只能使用第三方软件来解压
-        subprocess.run(['./xww_lib/.venv/7z/7-Zip/7z.exe','x', file_name, '-o./','-bsp1'])
+        
+        # # # 由于py7zr不支持bcj2算法，这里只能使用第三方软件来解压
+        # subprocess.run(['./xww_lib/.venv/7z/7-Zip/7z.exe','x', file_name, '-o./','-bsp1'])
+        
+        # 使用subprocess.Popen调用7z.exe进行文件解压并捕获输出
+        unzipProcess = subprocess.Popen(['./xww_lib/.venv/7z/7-Zip/7z.exe', 'x', file_name, '-o./', '-bsp1'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+        # 逐行获取输出，同时提取解压后的文件名
+        e = "\r"
+        while True:
+            output = unzipProcess.stdout.readline()
+            if unzipProcess.poll() is not None and output == '':
+                break
+            if output:
+                line = output.strip()
+                try:
+                    if not qobj is None:
+                        l = line.split("-")[0].strip()
+                        if l:
+                            s = f"   正在解压 {l}"
+                            if ce.getCHEN() == "EN":
+                                s = f"   Unzipping {l}"
+                            qobj.progress.emit(s)
+                except Exception as e:
+                    print(e)
+                if "Everything is Ok" in line:
+                    e = ""
+                print(line,end=e)  # 实时输出解压进度
+            
         # 执行文件重命名操作
-        os.rename(file_name.replace(".7z",""), extract_folder)
+        # os.rename(file_name.replace(".7z",""), extract_folder)
         if ce.getCHEN() == "EN":
             print(f"\n Decompression time:{time.time() - start}s\n")
             print("The ComfyUI project is unpacked, and now you can use the features in the launcher. Have fun...\n\n")
@@ -91,6 +137,8 @@ def dowload(i,k):
         # os.remove(file_name)
         # # 打印删除完成
         # print("删除完成")
+        if not qobj is None:
+            qobj.progress.emit('--')
         return "success"
     except Exception as e:
         # 打印错误信息

@@ -1,4 +1,11 @@
 - author: xww
+  civitaiUrl: https://civitai.com/models/42647/comfyui-comfytranslationnode
+  description: This node allows you to translate text using the Google Translate API.
+  descriptionCN: "\u8FD9\u4E2A\u8282\u70B9\u5141\u8BB8\u60A8\u4F7F\u7528\u8C37\u6B4C\
+    \u7FFB\u8BD1API\u6765\u7FFB\u8BD1\u6587\u672C\u3002"
+  gitUrl: https://github.com/laojingwei/comfy_translation_node
+  name: comfy_translation_node
+- author: xww
   civitaiUrl: https://civitai.com/models/49851/comfyui-comfyassembletagsnode
   description: Customizing a better combination of descriptions using ready-made prompts.
   descriptionCN: "\u5B9A\u5236\u66F4\u4F18\u7684\u63CF\u8FF0\u7EC4\u5408\uFF0C\u4F7F\

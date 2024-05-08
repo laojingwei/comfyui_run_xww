@@ -31,16 +31,10 @@
         <br>
         <label>
             <span v-if="CHENFLAF">
-                项目下载：没下载过项目的可选择下面按钮进行下载，项目大小在1.4G左右，如果你下载下来的压缩包小于1.4G，请重新下载或更换其它方式下载；如果你的网络访问gitHub比较快，推荐使用第一个下载，如果比较慢，可选择国内加速进行下载，这两个加速方式本人试了好几次速度感觉还可以；如果实在运气不佳所有方式都很慢或没法下载，那你可以在bilibili里找找看哪位up主有提供百度网盘的ComfyUI整合包去下载，本人穷开不起网盘(⊙o⊙)…
+                项目下载：没下载过项目的可选择下面按钮进行下载，项目大小在1.34G左右，如果你下载下来的压缩包小于1.34G，请重新下载或更换其它方式下载；如果你的网络访问gitHub比较快，推荐使用第一个下载，如果比较慢，可以去我的百度网盘下载，解压即用
             </span>
             <span v-else>
-                Project download: If you have not downloaded the project, you can choose the button below to download it.
-                The size of the project is about 1.4G. If the compressed package you downloaded is less than 1.4G, please
-                re-download or download it in other ways; If your network access to gitHub is relatively fast, it is
-                recommended to use the first download, if relatively slow, you can choose to download the domestic
-                acceleration, these two acceleration methods I tried several times, the speed is OK; If you are really
-                unlucky all the way is slow or can not download, then you can look in bilibili to see which master has Baidu
-                web disk ComfyUI integration package to download, I can not afford to open the web disk (⊙o⊙)...
+                Project Download: If you haven't downloaded the project before, you can choose the button below to start the download. The project size is around 1.34GB. If the size of the downloaded compressed file is less than 1.34GB, please download it again or use another method for downloading. If your network accesses GitHub quickly, it is recommended to use the first download option. If it's slow, you can download from my Baidu Netdisk and use it after extracting.
             </span>
         </label>
         <button @click="downLoad(0,1)">
@@ -48,10 +42,18 @@
                 项目下载（github）-新版
             </span>
             <span v-else>
-                Project download (github)
+                Project download (github)-New version
             </span>
         </button>
-        <button @click="downLoad(1)">
+        <button @click="openUrl_('https://pan.baidu.com/s/1jH67y')">
+            <span v-if="CHENFLAF">
+                项目下载（百度云）-新版
+            </span>
+            <span v-else>
+                Project download (Baidu cloud)-New version
+            </span>
+        </button>
+        <!-- <button @click="downLoad(1)">
             <span v-if="CHENFLAF">
                 项目下载（huggingface）-旧版
             </span>
@@ -67,7 +69,7 @@
             <span v-else>
                 Project download (github)
             </span>
-        </button>
+        </button> -->
         <br>
         <!-- <button @click="downLoad(1)">
             <span v-if="CHENFLAF">
@@ -146,6 +148,9 @@ export default {
     },
 
     methods: {
+        openUrl_(url) {
+            url && this.$Xwwqt.openUrl(url)
+        },
         check_xww_vTime() {
             this.check_xww_vTimer && clearTimeout(this.check_xww_vTimer);
             this.check_xww_vTimer = setTimeout(() => {
@@ -244,13 +249,15 @@ export default {
             this.downLoadTimer && clearTimeout(this.downLoadTimer);
             this.downLoadTimer = setTimeout(() => {
                 clearTimeout(this.downLoadTimer);
+                let progress = this.$Progress || '请稍等';
                 if (this.$DonloadFlag === "start") {
-                    this.$Toast.show(this.CHENFLAF ? `正在努力下载中。。。${this.emoji[Math.floor(Math.random() * 20)]}` : `Working on downloading...${this.emoji[Math.floor(Math.random() * 20)]}`);
+                    let text = this.CHENFLAF ? `${progress}<br>正在努力下载中。。。${this.emoji[Math.floor(Math.random() * 20)]}` : `${progress}<br>Working on downloading...${this.emoji[Math.floor(Math.random() * 20)]}`;
+                    this.$Toast.show(text);
                     this.downLoadTime();
                 } else if (this.$DonloadFlag === "error") {
-                    this.$Toast.show(this.CHENFLAF ? '下载失败' : 'Download failed', 3000);
+                    this.$Toast.show(this.CHENFLAF ? '操作失败' : 'Download failed', 3000);
                 } else if (this.$DonloadFlag === "success") {
-                    this.$Toast.show(this.CHENFLAF ? '下载成功' : 'Download successfully', 3000);
+                    this.$Toast.show(this.CHENFLAF ? '操作成功' : 'Download successfully', 3000);
                 }
             }, 2000);
         },
