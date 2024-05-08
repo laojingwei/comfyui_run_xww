@@ -1,6 +1,6 @@
 # comfyui_run_xww
 
-# 注意：这里只是为了维护源码而新建的库，需要使用完整功能请点击这里下载：[启动器](https://huggingface.co/xww/xww_comfyui_resource/resolve/main/comfyui_run_xww.zip)
+# 注意：这里只是为了维护源码而新建的库，需要使用完整功能请点击这里下载：[百度云盘（新版）](链接：https://pan.baidu.com/s/1G9GysHhFddoExlLkw2Rwdw?pwd=xwwx)   [启动器（旧版，不推荐使用）](https://huggingface.co/xww/xww_comfyui_resource/resolve/main/comfyui_run_xww.zip)
 # 如何你想研究代码或修改，你可以下载这个，里面包含了全部源码及所有依赖库，解压就能跑，点击这里下载：[启动器](https://huggingface.co/xww/xww_comfyui_resource/resolve/main/comfyui_run_xww.zip)
 # 使用方法：
 ### 1、直接下载下来解压，找到"启动器-win64.exe"直接启动就行，无需安装任何依赖，只需要下载一个comfyui的整合包就行，如果你已经下载有直接把本启动器解压后的文件放在ComfyUI_windows_portable外面就可以了
